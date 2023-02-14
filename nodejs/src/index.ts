@@ -10,9 +10,8 @@ const signFile = (base64: boolean) => {
       key: getPrivateKey(),
       passphrase: "pass",
     },
-    base64 ? "base64" : "binary"
   );
-  fs.writeFileSync("../data/test.txt.sign", signature);
+  fs.writeFileSync("../data/test.txt.sign", base64 ? signature.toString("base64") : signature);
 };
 
 const getPrivateKey = () => {
@@ -20,4 +19,4 @@ const getPrivateKey = () => {
 };
 
 // Change this to false to create a binary signature or true to create a base64 signature
-signFile(true);
+signFile(false);
